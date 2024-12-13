@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบลงเวลาทำงาน</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fce4ec; /* Pastel pink */
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            background: #f8bbd0; /* Light pastel pink */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .time {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #880e4f; /* Deep pink */
+        }
+        .label {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #6a1b9a; /* Soft purple */
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 1px solid #ce93d8; /* Pastel purple border */
+            border-radius: 5px;
+            background-color: #f3e5f5; /* Light pastel purple */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.submit {
+            background-color: #81c784; /* Pastel green */
+            color: white;
+        }
+        button.back {
+            background-color: #ffcc80; /* Pastel orange */
+            color: black;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .confirmation {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <div class="time">08:15 AM.</div>
+        <div class="label">กรอกรหัสพนักงาน</div>
+        <input type="text" id="employee-id" placeholder="รหัสพนักงาน">
+        <button class="submit" onclick="submitTime()">ลงเวลา</button>
+        <button class="back">ย้อนกลับ</button>
+    </div>
+
+    <div class="container confirmation" id="confirmation-container">
+        <div class="time">08:15 AM.</div>
+        <div class="label">ยืนยันการลงเวลา</div>
+        <div id="confirmed-id" style="font-size: 1.2rem; color: #4a148c; margin-top: 10px;"></div>
+        <button class="back" onclick="goBack()">ย้อนกลับ</button>
+    </div>
+
+    <script>
+        function submitTime() {
+            const employeeId = document.getElementById('employee-id').value;
+            if (employeeId.trim() === "") {
+                alert('กรุณากรอกรหัสพนักงาน');
+                return;
+            }
+
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('confirmation-container').style.display = 'block';
+            document.getElementById('confirmed-id').textContent = employeeId;
+        }
+
+        function goBack() {
+            document.getElementById('confirmation-container').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+            document.getElementById('employee-id').value = '';
+        }
+    </script>
+</body>
+</html>
